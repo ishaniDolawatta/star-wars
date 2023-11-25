@@ -18,3 +18,24 @@ export interface Starship {
   starship_class: string;
   url: string;
 }
+
+export const starshipNameProperty: keyof Starship = "name";
+
+export const starshipGeneralContentList: (keyof Starship)[] = [
+  "MGLT",
+  "cargo_capacity",
+  "consumables",
+  "crew",
+  "hyperdrive_rating",
+  "length",
+  "manufacturer",
+  "max_atmosphering_speed",
+  "passengers",
+  "starship_class",
+];
+
+export const starshipNavigateContentList: (keyof Starship)[] = [
+  "pilots",
+  "films",
+];
+export const starshipNavigateContentSingle: (keyof Starship)[] = [];

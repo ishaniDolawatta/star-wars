@@ -6,7 +6,7 @@ const bounceAnimation = keyframes`
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-8px);
+    transform: translateY(-6px);
   }
 `;
 
@@ -17,11 +17,11 @@ const LoadingContainer = styled.div`
 `;
 
 const BouncingDot = styled.div`
-  width: 10px;
-  height: 10px;
-  margin: 5px;
+  width: 8px;
+  height: 8px;
+  margin: 4px;
   border-radius: 50%;
-  background-color: gray;
+  background-color: lightGray;
   animation: ${bounceAnimation} 1.5s infinite ease-in-out;
   &:nth-child(2) {
     animation-delay: 0.5s;

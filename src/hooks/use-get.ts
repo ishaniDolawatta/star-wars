@@ -1,12 +1,8 @@
 import axios from "axios";
-import { useInfiniteQuery } from "@tanstack/react-query";
-import { API_URL } from "../config";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { ApiTypes } from "../models/StartWars";
-
-const getPage = (url?: string) => {
-  const match = url?.match(/page=(\d+)/);
-  return match ? parseInt(match[1]) : undefined;
-};
+import { getPage } from "../utils/star-wars";
+import { API_URL } from "../config";
 
 type Page = {
   results: any[];
@@ -31,5 +27,16 @@ export const useGetStartWarsData = (type: ApiTypes, search: string) => {
     queryFn: ({ pageParam = 1 }) => fetchData(type, search, pageParam),
     initialPageParam: 1,
     getNextPageParam: (lastPage: Page) => getPage(lastPage.next),
+  });
+};
+
+export const useGetStarWarsDataById = (id: string, type: ApiTypes) => {
+  return useQuery({
+    queryKey: [type, id],
+    queryFn: async () => {
+      const { data } = await axios.get(`${API_URL}/${type}/${id}`);
+      return data;
+    },
+    staleTime: Infinity,
   });
 };

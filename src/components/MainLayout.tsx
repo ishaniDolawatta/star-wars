@@ -1,11 +1,15 @@
 import { useState } from "react";
 import styled from "styled-components";
-
 import useDebounce from "../hooks/use-debounce";
 
 import CharacterList from "./star-wars/CharacterList";
+import DetailedView from "./star-wars/detailed-view/DetailedView";
 import Input from "./shared/Input";
-import Modal from "./shared/modal/Modal";
+import PlanetList from "./star-wars/PlanetList";
+import FilmList from "./star-wars/FilmList";
+import SpecietList from "./star-wars/SpecietList";
+import StarshiptList from "./star-wars/StarshipList";
+import VehicleList from "./star-wars/VehicleList";
 
 export default function MainLayout() {
   const [searchValue, setSearchValue] = useState("");
@@ -19,7 +23,7 @@ export default function MainLayout() {
   return (
     <Container>
       {selectedUrl && (
-        <Modal onClose={() => handleDisplayModal()}>{selectedUrl}</Modal>
+        <DetailedView url={selectedUrl} onClose={() => handleDisplayModal()} />
       )}
       <SearchContainer>
         <ImageContainer>
@@ -35,6 +39,26 @@ export default function MainLayout() {
       </SearchContainer>
 
       <CharacterList
+        searchTerm={debouncedSearchValue}
+        onExpandContent={(url) => handleDisplayModal(url)}
+      />
+      <FilmList
+        searchTerm={debouncedSearchValue}
+        onExpandContent={(url) => handleDisplayModal(url)}
+      />
+      <StarshiptList
+        searchTerm={debouncedSearchValue}
+        onExpandContent={(url) => handleDisplayModal(url)}
+      />
+      <VehicleList
+        searchTerm={debouncedSearchValue}
+        onExpandContent={(url) => handleDisplayModal(url)}
+      />
+      <SpecietList
+        searchTerm={debouncedSearchValue}
+        onExpandContent={(url) => handleDisplayModal(url)}
+      />
+      <PlanetList
         searchTerm={debouncedSearchValue}
         onExpandContent={(url) => handleDisplayModal(url)}
       />

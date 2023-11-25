@@ -15,3 +15,19 @@ export interface Specie {
   skin_colors: string;
   url: string;
 }
+
+export const specieNameProperty: keyof Specie = "name";
+
+export const specieGeneralContentList: (keyof Specie)[] = [
+  "average_height",
+  "average_lifespan",
+  "classification",
+  "designation",
+  "eye_colors",
+  "hair_colors",
+  "language",
+  "skin_colors",
+];
+
+export const specieNavigateContentList: (keyof Specie)[] = ["people", "films"];
+export const specieNavigateContentSingle: (keyof Specie)[] = ["homeworld"];
