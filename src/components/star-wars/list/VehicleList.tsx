@@ -1,24 +1,26 @@
 import React, { useEffect, useRef } from "react";
-import { useGetStartWarsData } from "../../hooks/use-get";
+import { useTranslation } from "react-i18next";
+import { useGetStartWarsData } from "../../../hooks/use-get";
 
-import { ApiTypes } from "../../models/StartWars";
-import { Planet } from "../../models/Planet";
+import { ApiTypes } from "../../../models/StartWars";
+import { Vehicle } from "../../../models/Vehicle";
 
-import Card from "../shared/horizontal-list-with-pagination/Card";
-import ErrorComponent from "../shared/ErrorContainer";
-import ListContainer from "../shared/horizontal-list-with-pagination/ListContainer";
-import LoadingDots from "../shared/LoadingDots";
-import PaginatedList from "../shared/horizontal-list-with-pagination/PaginatedList";
+import Card from "../../shared/horizontal-list-with-pagination/Card";
+import ErrorComponent from "../../shared/ErrorContainer";
+import ListContainer from "../../shared/horizontal-list-with-pagination/ListContainer";
+import LoadingDots from "../../shared/LoadingDots";
+import PaginatedList from "../../shared/horizontal-list-with-pagination/PaginatedList";
 
 type Props = {
   searchTerm: string;
   onExpandContent: (url: string) => void;
 };
 
-const PlanetList = ({ searchTerm, onExpandContent }: Props) => {
+const VehicleList = ({ searchTerm, onExpandContent }: Props) => {
+  const { t } = useTranslation();
   const observerTarget = useRef(null);
   const { data, isLoading, isError, fetchNextPage, hasNextPage } =
-    useGetStartWarsData(ApiTypes.Planets, searchTerm);
+    useGetStartWarsData(ApiTypes.Vehicles, searchTerm);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -43,25 +45,25 @@ const PlanetList = ({ searchTerm, onExpandContent }: Props) => {
   }, [observerTarget, fetchNextPage, hasNextPage]);
 
   return (
-    <ListContainer header={ApiTypes.Planets.toUpperCase()}>
+    <ListContainer header={t(`${ApiTypes.Vehicles}.title`)}>
       {isError ? (
-        <ErrorComponent errorText="Unable to load characters" />
+        <ErrorComponent errorText={t(`${ApiTypes.Vehicles}.error_text`)} />
       ) : (
         <PaginatedList>
           {isLoading && <LoadingDots />}
           {data?.pages.map((page, pageNum) => (
             <React.Fragment key={pageNum}>
-              {page.results.map((planet: Planet, index) => (
+              {page.results.map((vehicle: Vehicle, index) => (
                 <Card
-                  key={`${index}_${planet.name}`}
-                  text={planet.name}
-                  onClick={() => onExpandContent(planet.url)}
+                  key={`${index}_${vehicle.model}`}
+                  text={vehicle.name}
+                  onClick={() => onExpandContent(vehicle.url)}
                 />
               ))}
               {page.results.length === 0 && (
                 <ErrorComponent
                   textColor="gray"
-                  errorText="Characters not found."
+                  errorText={t(`${ApiTypes.Vehicles}.not_found`)}
                 />
               )}
             </React.Fragment>
@@ -73,4 +75,4 @@ const PlanetList = ({ searchTerm, onExpandContent }: Props) => {
   );
 };
 
-export default PlanetList;
+export default VehicleList;

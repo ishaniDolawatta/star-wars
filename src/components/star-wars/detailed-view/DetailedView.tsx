@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useTranslation } from "react-i18next";
 import { useGetStarWarsDataById } from "../../../hooks/use-get";
 
 import {
@@ -21,12 +22,13 @@ type Props = {
 const DetailedView = ({ url, onClose }: Props) => {
   const { id, type } = getTypeAndIdFromUrl(url);
   const { isLoading, data, isError } = useGetStarWarsDataById(id, type);
+  const { t } = useTranslation();
 
   return (
     <Modal isLoading={isLoading} onClose={() => onClose()}>
       <DetailViewContainer>
         {isError ? (
-          <ErrorComponent errorText="Unable to load data" />
+          <ErrorComponent errorText={t(`${type}.error_text`)} />
         ) : (
           <>
             {data && (
@@ -37,7 +39,9 @@ const DetailedView = ({ url, onClose }: Props) => {
                     {getGeneralContentList(type).map((key) => {
                       return (
                         <ListItem key={key}>
-                          <TextContent isBold={true}>{key}</TextContent>
+                          <TextContent isBold={true}>
+                            {t(`${type}.${key}`)}
+                          </TextContent>
                           <TextContent>{data[key]}</TextContent>
                         </ListItem>
                       );
@@ -49,7 +53,7 @@ const DetailedView = ({ url, onClose }: Props) => {
                     {getNavigateContentSingle(type).map((key: string) => {
                       return (
                         <FlexColumnWrapper key={key}>
-                          <HeaderContent>{key}</HeaderContent>
+                          <HeaderContent> {t(`${type}.${key}`)}</HeaderContent>
                           <InfoView url={data[key]} />
                         </FlexColumnWrapper>
                       );
@@ -58,7 +62,7 @@ const DetailedView = ({ url, onClose }: Props) => {
                       if (data[key].length === 0) return null;
                       return (
                         <FlexColumnWrapper key={key}>
-                          <HeaderContent>{key}</HeaderContent>
+                          <HeaderContent> {t(`${type}.${key}`)}</HeaderContent>
                           {data[key].map((item: string) => {
                             return <InfoView key={item} url={item} />;
                           })}

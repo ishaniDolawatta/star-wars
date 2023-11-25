@@ -19,7 +19,7 @@ export default Input;
 const InputBase = styled.input<{ hasError?: boolean }>`
   height: 45px;
   border: none;
-  max-width: 500px;
+  width: calc(100% - 25px);
   font-size: 16px;
   outline: none;
 `;

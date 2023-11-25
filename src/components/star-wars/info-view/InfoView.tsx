@@ -1,4 +1,5 @@
 import React, { ReactNode } from "react";
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 import ErrorComponent from "../../shared/ErrorContainer";
@@ -31,6 +32,7 @@ const iconMap: { [key in ApiTypes]: React.ReactNode } = {
 const InfoView = ({ url }: Props) => {
   const { id, type } = getTypeAndIdFromUrl(url);
   const { data, isError, isLoading } = useGetStarWarsDataById(id, type);
+  const { t } = useTranslation();
 
   const getInfoContent = (): ReactNode => {
     switch (type) {
@@ -54,7 +56,7 @@ const InfoView = ({ url }: Props) => {
   return (
     <>
       {isError ? (
-        <ErrorComponent errorText="Unable to load data" />
+        <ErrorComponent errorText={t(`${type}.error_text`)} />
       ) : (
         <>
           {isLoading && <LoadingDots />}
