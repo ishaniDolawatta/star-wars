@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import ErrorComponent from "../../components/shared/ErrorContainer";
+import ErrorComponent from "../components/shared/ErrorContainer";
 
 describe("ErrorComponent", () => {
   it("renders with default color if textColor prop is not provided", () => {
