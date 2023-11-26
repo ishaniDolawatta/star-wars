@@ -1,18 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
+import styled from "styled-components";
+
+const LanguagePickerWrapper = styled.div`
+  position: absolute;
+  right: 0;
+  display: flex;
+`;
+const LanguageOption = styled.div.attrs<{ $isactive?: boolean }>((props) => ({
+  $isactive: props.$isactive || false,
+}))`
+  font-size: 25px;
+  margin: 5px;
+  cursor: pointer;
+  border: none;
+  border-bottom: ${(props) => (props.$isactive ? "1px solid" : "none")};
+`;
 
 const LanguageSwitcher: React.FC = () => {
   const { i18n } = useTranslation();
+  const [language, setLanguage] = useState("en");
 
-  const changeLanguage = (lng: string) => {
-    i18n.changeLanguage(lng);
+  const handleLanguageChange = (lang: string) => {
+    i18n.changeLanguage(lang);
+    setLanguage(lang);
   };
 
   return (
-    <div>
-      <button onClick={() => changeLanguage("en")}>English</button>
-      <button onClick={() => changeLanguage("sv")}>Swedish</button>
-    </div>
+    <LanguagePickerWrapper>
+      <LanguageOption
+        $isactive={language === "sv"}
+        onClick={() => handleLanguageChange("sv")}
+      >
+        🇸🇪
+      </LanguageOption>
+      <LanguageOption
+        $isactive={language === "en"}
+        onClick={() => handleLanguageChange("en")}
+      >
+        🇺🇸
+      </LanguageOption>
+    </LanguagePickerWrapper>
   );
 };
 

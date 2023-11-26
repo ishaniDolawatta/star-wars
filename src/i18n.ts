@@ -14,8 +14,8 @@ i18n
         translation: svenska, // Swedish locale file
       },
     },
-    lng: 'sv', // Default language
-    fallbackLng: 'sv', // Fallback language
+    lng: 'en', // Default language
+    fallbackLng: 'en', // Fallback language
     interpolation: {
       escapeValue: false,
     },

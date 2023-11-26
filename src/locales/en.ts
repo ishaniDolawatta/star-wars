@@ -9,7 +9,7 @@ export const english = {
     hair_color: "Hair color",
     height: "Height",
     mass: "Mass",
-    skin_color: "Skin_color",
+    skin_color: "Skin color",
     films: "Films",
     species: "Species",
     vehicles: "Vehicles",

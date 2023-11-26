@@ -19,10 +19,10 @@ export const filmNameProperty: keyof Film = "title";
 
 export const filmGeneralContentList: (keyof Film)[] = [
   "episode_id",
-  "opening_crawl",
   "director",
   "producer",
   "release_date",
+  "opening_crawl",
 ];
 
 export const filmNavigateContentList: (keyof Film)[] = [

@@ -8,7 +8,7 @@ type Props = {
 
 const ErrorComponent: React.FC<Props> = ({ textColor, errorText }) => {
   return (
-    <Container textColor={textColor}>
+    <Container textcolor={textColor}>
       <p>{errorText}</p>
     </Container>
   );
@@ -16,8 +16,8 @@ const ErrorComponent: React.FC<Props> = ({ textColor, errorText }) => {
 
 export default ErrorComponent;
 
-const Container = styled.div<{ textColor?: string }>`
-  color: ${(props) => (props.textColor ? props.textColor : "#ff6347")};
+const Container = styled.div<{ textcolor?: string }>`
+  color: ${(props) => (props.textcolor ? props.textcolor : "#ff6347")};
   font-size: 16px;
   p {
     margin-top: 5px;

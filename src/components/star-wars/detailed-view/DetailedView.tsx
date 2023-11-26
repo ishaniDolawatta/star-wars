@@ -39,7 +39,7 @@ const DetailedView = ({ url, onClose }: Props) => {
                     {getGeneralContentList(type).map((key) => {
                       return (
                         <ListItem key={key}>
-                          <TextContent isBold={true}>
+                          <TextContent $isbold={true}>
                             {t(`${type}.${key}`)}
                           </TextContent>
                           <TextContent>{data[key]}</TextContent>
@@ -51,6 +51,7 @@ const DetailedView = ({ url, onClose }: Props) => {
                 <Section>
                   <WrapperList>
                     {getNavigateContentSingle(type).map((key: string) => {
+                      if (!data[key]) return null;
                       return (
                         <FlexColumnWrapper key={key}>
                           <HeaderContent> {t(`${type}.${key}`)}</HeaderContent>
@@ -88,10 +89,12 @@ const DetailViewContainer = styled.div`
   padding: 20px;
 `;
 
-const TextContent = styled.span<{ isBold?: boolean }>`
+const TextContent = styled.span.attrs<{ $isbold?: boolean }>((props) => ({
+  $isbold: props.$isbold || false,
+}))`
   padding: 5px 15px;
   font-size: 16px;
-  font-weight: ${(props) => (props.isBold ? "bold" : "normal")};
+  font-weight: ${(props) => (props.$isbold ? "bold" : "normal")};
 `;
 
 const Title = styled.h3`
@@ -104,17 +107,20 @@ const Title = styled.h3`
 
 const HeaderContent = styled.div`
   font-size: 16px;
-  background: lightGray;
-  padding: 5px;
+  background: #e8e8e8;
+  padding: 8px;
   text-align: center;
-  border-radius: 5px;
+  border-radius: 20px;
   margin-bottom: 10px;
 `;
 
 const ListItem = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin: 5px 0;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  @media (max-width: 450px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const FlexColumnWrapper = styled.div`
@@ -138,12 +144,7 @@ const Section = styled.div`
 `;
 
 const KeyValuesList = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-
-  li {
-    margin-bottom: 8px;
-  }
+  padding: 10px;
 `;
 
 const WrapperList = styled.div`
