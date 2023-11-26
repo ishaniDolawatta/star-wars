@@ -7,7 +7,7 @@
 
 > Star wars combined search and view application using SWAPI.
 
-### ✨ [Demo](https://google.com)
+### ✨ [Demo](https://dashing-caramel-6c63e2.netlify.app/)
 
 ## Install
 
