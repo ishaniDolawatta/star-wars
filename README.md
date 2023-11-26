@@ -1,8 +1,5 @@
 <h1>Welcome to StarWars 👋</h1>
 <p>
-  <a href="https://www.npmjs.com/package/star-wars" target="_blank">
-    <img alt="Version" src="https://img.shields.io/npm/v/star-wars.svg">
-  </a>
   <a href="https://swapi.dev/documentation" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
