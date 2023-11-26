@@ -45,7 +45,10 @@ const PlanetList = ({ searchTerm, onExpandContent }: Props) => {
   }, [observerTarget, fetchNextPage, hasNextPage]);
 
   return (
-    <ListContainer header={t(`${ApiTypes.Planets}.title`)}>
+    <ListContainer
+      data-testid="planet-list-container"
+      header={t(`${ApiTypes.Planets}.title`)}
+    >
       {isError ? (
         <ErrorComponent errorText={t(`${ApiTypes.Planets}.error_text`)} />
       ) : (
@@ -56,6 +59,7 @@ const PlanetList = ({ searchTerm, onExpandContent }: Props) => {
               {page.results.map((planet: Planet, index) => (
                 <Card
                   key={`${index}_${planet.name}`}
+                  data-testid={`planet-${index}_${planet.name}`}
                   text={planet.name}
                   onClick={() => onExpandContent(planet.url)}
                 />

@@ -18,7 +18,7 @@ type Props = {
 };
 
 const PaginatedList: React.FC<Props> = ({ children }) => {
-  return <ScrollingWrapper>{children}</ScrollingWrapper>;
+  return <ScrollingWrapper data-testid="paginated-list-wrapper">{children}</ScrollingWrapper>;
 };
 
 export default PaginatedList;

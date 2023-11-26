@@ -45,7 +45,10 @@ const FilmList = ({ searchTerm, onExpandContent }: Props) => {
   }, [observerTarget, fetchNextPage, hasNextPage]);
 
   return (
-    <ListContainer header={t(`${ApiTypes.Films}.title`)}>
+    <ListContainer
+      data-testid="film-list-container"
+      header={t(`${ApiTypes.Films}.title`)}
+    >
       {isError ? (
         <ErrorComponent errorText={t(`${ApiTypes.Films}.error_text`)} />
       ) : (
@@ -56,6 +59,7 @@ const FilmList = ({ searchTerm, onExpandContent }: Props) => {
               {page.results.map((film: Film, index) => (
                 <Card
                   key={`${index}_${film.title}`}
+                  data-testid={`film-${index}_${film.title}`}
                   text={film.title}
                   onClick={() => onExpandContent(film.url)}
                 />

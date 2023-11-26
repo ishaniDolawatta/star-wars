@@ -21,7 +21,7 @@ const BouncingDot = styled.div`
   height: 8px;
   margin: 4px;
   border-radius: 50%;
-  background-color: #E8E8E8;
+  background-color: #e8e8e8;
   animation: ${bounceAnimation} 1.5s infinite ease-in-out;
   &:nth-child(2) {
     animation-delay: 0.5s;
@@ -33,10 +33,10 @@ const BouncingDot = styled.div`
 
 const LoadingDots: React.FC = () => {
   return (
-    <LoadingContainer>
-      <BouncingDot />
-      <BouncingDot />
-      <BouncingDot />
+    <LoadingContainer data-testid="loading-dot-container">
+      <BouncingDot data-testid="dot-1" />
+      <BouncingDot data-testid="dot-2" />
+      <BouncingDot data-testid="dot-3" />
     </LoadingContainer>
   );
 };

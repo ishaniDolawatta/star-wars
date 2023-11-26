@@ -45,7 +45,10 @@ const VehicleList = ({ searchTerm, onExpandContent }: Props) => {
   }, [observerTarget, fetchNextPage, hasNextPage]);
 
   return (
-    <ListContainer header={t(`${ApiTypes.Vehicles}.title`)}>
+    <ListContainer
+      data-testid="vehicle-list-container"
+      header={t(`${ApiTypes.Vehicles}.title`)}
+    >
       {isError ? (
         <ErrorComponent errorText={t(`${ApiTypes.Vehicles}.error_text`)} />
       ) : (
@@ -56,6 +59,7 @@ const VehicleList = ({ searchTerm, onExpandContent }: Props) => {
               {page.results.map((vehicle: Vehicle, index) => (
                 <Card
                   key={`${index}_${vehicle.model}`}
+                  data-testid={`vehicle-${index}_${vehicle.name}`}
                   text={vehicle.name}
                   onClick={() => onExpandContent(vehicle.url)}
                 />

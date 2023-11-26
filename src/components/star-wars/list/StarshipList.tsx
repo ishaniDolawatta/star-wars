@@ -45,7 +45,10 @@ const StarshiptList = ({ searchTerm, onExpandContent }: Props) => {
   }, [observerTarget, fetchNextPage, hasNextPage]);
 
   return (
-    <ListContainer header={t(`${ApiTypes.Starships}.title`)}>
+    <ListContainer
+      data-testid="starship-list-container"
+      header={t(`${ApiTypes.Starships}.title`)}
+    >
       {isError ? (
         <ErrorComponent errorText={t(`${ApiTypes.Starships}.error_text`)} />
       ) : (
@@ -56,6 +59,7 @@ const StarshiptList = ({ searchTerm, onExpandContent }: Props) => {
               {page.results.map((startship: Starship, index) => (
                 <Card
                   key={`${index}_${startship.name}`}
+                  data-testid={`startship-${index}_${startship.name}`}
                   text={startship.name}
                   onClick={() => onExpandContent(startship.url)}
                 />

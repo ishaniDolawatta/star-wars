@@ -45,7 +45,10 @@ const CharacterList = ({ searchTerm, onExpandContent }: Props) => {
   }, [observerTarget, fetchNextPage, hasNextPage]);
 
   return (
-    <ListContainer header={t(`${ApiTypes.People}.title`)}>
+    <ListContainer
+      data-testid="character-list-container"
+      header={t(`${ApiTypes.People}.title`)}
+    >
       {isError ? (
         <ErrorComponent errorText={t(`${ApiTypes.People}.error_text`)} />
       ) : (
@@ -56,6 +59,7 @@ const CharacterList = ({ searchTerm, onExpandContent }: Props) => {
               {page.results.map((character: People, index) => (
                 <Card
                   key={`${index}_${character.height}`}
+                  data-testid={`character-${index}_${character.height}`}
                   text={character.name}
                   onClick={() => onExpandContent(character.url)}
                 />

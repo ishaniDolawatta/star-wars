@@ -8,8 +8,8 @@ type Props = {
 
 const ErrorComponent: React.FC<Props> = ({ textColor, errorText }) => {
   return (
-    <Container textcolor={textColor}>
-      <p>{errorText}</p>
+    <Container data-testid="error-container" textcolor={textColor}>
+      <p data-testid="error-text">{errorText}</p>
     </Container>
   );
 };

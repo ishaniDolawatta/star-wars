@@ -8,8 +8,8 @@ type InputProps = InputHTMLAttributes<HTMLInputElement> & {
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ id, placeholder, ...rest }, ref) => (
-    <Container>
-      <InputBase name={id} placeholder={placeholder} {...rest} />
+    <Container data-testid="input-container">
+      <InputBase data-testid="input-element" name={id} placeholder={placeholder} {...rest} />
     </Container>
   )
 );

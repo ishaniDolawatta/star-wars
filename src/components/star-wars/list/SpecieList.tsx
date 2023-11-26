@@ -45,7 +45,10 @@ const SpecieList = ({ searchTerm, onExpandContent }: Props) => {
   }, [observerTarget, fetchNextPage, hasNextPage]);
 
   return (
-    <ListContainer header={t(`${ApiTypes.Species}.title`)}>
+    <ListContainer
+      data-testid="species-list-container"
+      header={t(`${ApiTypes.Species}.title`)}
+    >
       {isError ? (
         <ErrorComponent errorText={t(`${ApiTypes.Species}.error_text`)} />
       ) : (
@@ -56,6 +59,7 @@ const SpecieList = ({ searchTerm, onExpandContent }: Props) => {
               {page.results.map((specie: Specie, index) => (
                 <Card
                   key={`${index}_${specie.name}`}
+                  data-testid={`specie-${index}_${specie.name}`}
                   text={specie.name}
                   onClick={() => onExpandContent(specie.url)}
                 />

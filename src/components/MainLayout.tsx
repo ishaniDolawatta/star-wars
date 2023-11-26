@@ -23,13 +23,13 @@ export default function MainLayout() {
   };
 
   return (
-    <Container>
+    <Container data-testid="container">
       {selectedUrl && (
         <DetailedView url={selectedUrl} onClose={() => handleDisplayModal()} />
       )}
-      <SearchContainer>
-        <ImageContainer>
-          <img alt="star-wars" src="./star-wars.png" />
+      <SearchContainer data-testid="search-container">
+        <ImageContainer data-testid="image-container">
+          <img data-testid="main-image" alt="star-wars" src="./star-wars.png" />
         </ImageContainer>
         <Input
           id="search"
