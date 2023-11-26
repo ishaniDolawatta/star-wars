@@ -56,7 +56,9 @@ const InfoView = ({ url }: Props) => {
   return (
     <>
       {isError ? (
-        <ErrorComponent errorText={t(`${type}.error_text`)} />
+        <ErrorComponent
+          errorText={t(`${type}.error_text_for_single`, { id })}
+        />
       ) : (
         <>
           {isLoading && <LoadingDots />}

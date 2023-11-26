@@ -19,11 +19,12 @@ const LanguageOption = styled.div.attrs<{ $isactive?: boolean }>((props) => ({
 
 const LanguageSwitcher: React.FC = () => {
   const { i18n } = useTranslation();
-  const [language, setLanguage] = useState("en");
+  const [language, setLanguage] = useState(localStorage.getItem("lng") || "en");
 
   const handleLanguageChange = (lang: string) => {
     i18n.changeLanguage(lang);
     setLanguage(lang);
+    localStorage.setItem("lng", lang);
   };
 
   return (

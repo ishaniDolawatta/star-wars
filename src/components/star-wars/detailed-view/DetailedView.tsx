@@ -28,7 +28,9 @@ const DetailedView = ({ url, onClose }: Props) => {
     <Modal isLoading={isLoading} onClose={() => onClose()}>
       <DetailViewContainer>
         {isError ? (
-          <ErrorComponent errorText={t(`${type}.error_text`)} />
+          <ErrorComponent
+            errorText={t(`${type}.error_text_for_single`, { id })}
+          />
         ) : (
           <>
             {data && (

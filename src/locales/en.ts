@@ -16,6 +16,7 @@ export const english = {
     starships: "Starships",
     homeworld: "Homeworld",
     error_text: "Unable to load characters.",
+    error_text_for_single: "Unable to load character {{id}}.",
     not_found: "Characters not found.",
   },
   films: {
@@ -31,6 +32,7 @@ export const english = {
     species: "Species",
     characters: "Characters",
     error_text: "Unable to load films.",
+    error_text_for_single: "Unable to load film {{id}}.",
     not_found: "Films not found.",
   },
   planets: {
@@ -46,6 +48,7 @@ export const english = {
     films: "Films",
     residents: "Residents",
     error_text: "Unable to load planets.",
+    error_text_for_single: "Unable to load planet {{id}}.",
     not_found: "Planets not found.",
   },
   species: {
@@ -62,6 +65,7 @@ export const english = {
     films: "Films",
     homeworld: "Homeworld",
     error_text: "Unable to load species.",
+    error_text_for_single: "Unable to load starship {{id}}.",
     not_found: "Species not found.",
   },
   starships: {
@@ -79,6 +83,7 @@ export const english = {
     pilots: "Pilots",
     films: "Films",
     error_text: "Unable to load starships.",
+    error_text_for_single: "Unable to load starship {{id}}.",
     not_found: "Starships not found.",
   },
   vehicles: {
@@ -96,6 +101,7 @@ export const english = {
     pilots: "Pilots",
     films: "Films",
     error_text: "Unable to load vehicles.",
+    error_text_for_single: "Unable to load vehicle {{id}}.",
     not_found: "Vehicles not found.",
   },
 };

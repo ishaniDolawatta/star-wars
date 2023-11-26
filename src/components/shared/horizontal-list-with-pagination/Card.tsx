@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const CardWrapper = styled.div`
+export const CardWrapper = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -12,6 +12,11 @@ const CardWrapper = styled.div`
   border-radius: 10px;
   padding: 10px;
   cursor: pointer;
+  &.load-more-tag {
+    border: none;
+    cursor: default;
+    padding: 0;
+  }
 `;
 
 type Props = {
