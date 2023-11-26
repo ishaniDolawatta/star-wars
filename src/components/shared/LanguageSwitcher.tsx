@@ -28,14 +28,16 @@ const LanguageSwitcher: React.FC = () => {
   };
 
   return (
-    <LanguagePickerWrapper>
+    <LanguagePickerWrapper data-testid="lan-picker-container">
       <LanguageOption
+        data-testid="sv-lan-option"
         $isactive={language === "sv"}
         onClick={() => handleLanguageChange("sv")}
       >
         🇸🇪
       </LanguageOption>
       <LanguageOption
+        data-testid="en-lan-option"
         $isactive={language === "en"}
         onClick={() => handleLanguageChange("en")}
       >
