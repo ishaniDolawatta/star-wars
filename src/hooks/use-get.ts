@@ -5,6 +5,7 @@ import { getPage } from "../utils/star-wars";
 import { API_URL } from "../config";
 
 type Page = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   results: any[];
   next?: string;
   previous?: string;
