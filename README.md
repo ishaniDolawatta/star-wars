@@ -34,7 +34,7 @@ npm test
 * Internationalisation : i18next
 * Icons : react-icons
 
-# Discussion for BE support
+## Discussion for BE support
 
 * Dev Search endpoints return all properties for each record. I think that is not necessary. It would be nice if the FE can specify which properties to include in the response, perhaps using a query parameter called "include".
 
