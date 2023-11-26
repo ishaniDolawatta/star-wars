@@ -1,22 +1,23 @@
-import React, { InputHTMLAttributes } from "react";
+import React, { InputHTMLAttributes, RefObject } from "react";
 import styled from "styled-components";
 
-type InputProps = InputHTMLAttributes<HTMLInputElement> & {
-  id: string;
-  placeholder: string;
-};
-
-const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ id, placeholder, ...rest }, ref) => (
+// eslint-disable-next-line react/display-name
+const Input = React.forwardRef<HTMLInputElement, InputHTMLAttributes<HTMLInputElement>>(
+  ({ ...rest }, ref) => (
     <Container data-testid="input-container">
-      <InputBase data-testid="input-element" name={id} placeholder={placeholder} {...rest} />
+      <InputBase
+        data-testid="input-element"
+
+        {...rest}
+        ref={ref as RefObject<HTMLInputElement>}
+      />
     </Container>
   )
 );
 
 export default Input;
 
-const InputBase = styled.input<{ hasError?: boolean }>`
+const InputBase = styled.input`
   height: 45px;
   border: none;
   width: calc(100% - 25px);
@@ -39,5 +40,4 @@ const Container = styled.div`
   &:focus-within {
     box-shadow: 1px 1px 8px 1px #dcdcdc;
     outline: none;
-  }
-`;
+    `;

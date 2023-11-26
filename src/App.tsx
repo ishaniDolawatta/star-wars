@@ -1,3 +1,4 @@
+import React from "react";
 import MainLayout from "./components/MainLayout";
 import TanstackProvider from "./providers/TanstackProvider";
 import { I18nextProvider } from "react-i18next";
