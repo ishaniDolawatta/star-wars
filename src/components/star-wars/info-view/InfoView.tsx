@@ -60,10 +60,10 @@ const InfoView = ({ url }: Props) => {
           errorText={t(`${type}.error_text_for_single`, { id })}
         />
       ) : (
-        <>
+        <Wrapper>
           {isLoading && <LoadingDots />}
           {data && getInfoContent()}
-        </>
+        </Wrapper>
       )}
     </>
   );
@@ -92,4 +92,8 @@ const ListItem = styled.div`
 
 const Link = styled.a`
   font-size: 14px;
+`;
+
+const Wrapper = styled.span`
+  padding-left: 20px;
 `;

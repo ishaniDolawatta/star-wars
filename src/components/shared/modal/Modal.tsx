@@ -20,13 +20,17 @@ const ModalWrapper = styled.div`
   border-radius: 10px;
   padding: 10px;
   background-color: white;
-  max-width:calc(100% - 100px);
-  max-height:calc(100% - 125px);
+  max-width: calc(100% - 100px);
+  max-height: calc(100% - 125px);
+  min-width: calc(80% - 10px);
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
 
   &::-webkit-scrollbar {
     display: none;
+  }
+  @media (max-width: 450px) {
+    min-width: 100%; /* One column on smaller screens */
   }
 `;
 
@@ -35,6 +39,7 @@ const CloseButton = styled.div`
   justify-content: end;
   svg {
     cursor: pointer;
+    position: absolute;
   }
 `;
 
@@ -50,7 +55,11 @@ const Modal: React.FC<Props> = ({ children, onClose, isLoading = false }) => {
       {isLoading ? (
         <LoadingDots />
       ) : (
-        <ModalWrapper>
+        <ModalWrapper
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+        >
           <CloseButton onClick={() => onClose()}>
             <MdClose />
           </CloseButton>

@@ -55,4 +55,4 @@ npm test
 
 ## Show your support
 
-Give a ⭐️ if this project helped you!
+Give a ⭐️ if you like this project. Feel free to fork!

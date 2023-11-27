@@ -35,47 +35,53 @@ const DetailedView = ({ url, onClose }: Props) => {
         ) : (
           <>
             {data && (
-              <DetailViewContainer>
+              <>
                 <Title>{data[getNameProperty(type)]}</Title>
                 <Section>
                   <KeyValuesList>
-                    {getGeneralContentList(type).map((key) => {
-                      return (
-                        <ListItem key={key}>
-                          <TextContent $isbold={true}>
-                            {t(`${type}.${key}`)}
-                          </TextContent>
-                          <TextContent>{data[key]}</TextContent>
-                        </ListItem>
-                      );
-                    })}
+                    <tbody>
+                      {getGeneralContentList(type).map((key) => {
+                        return (
+                          <ListItem key={key}>
+                            <TextContent $isbold={true}>
+                              {t(`${type}.${key}`)}
+                            </TextContent>
+                            <TextContent>{data[key]}</TextContent>
+                          </ListItem>
+                        );
+                      })}
+                    </tbody>
                   </KeyValuesList>
                 </Section>
-                <Section>
+                <>
                   <WrapperList>
                     {getNavigateContentSingle(type).map((key: string) => {
                       if (!data[key]) return null;
                       return (
-                        <FlexColumnWrapper key={key}>
+                        <ContentListWrapper key={key}>
                           <HeaderContent> {t(`${type}.${key}`)}</HeaderContent>
-                          <InfoView url={data[key]} />
-                        </FlexColumnWrapper>
+                          <FlexColumnWrapper>
+                            <InfoView url={data[key]} />
+                          </FlexColumnWrapper>
+                        </ContentListWrapper>
                       );
                     })}
                     {getNavigateContentList(type).map((key) => {
                       if (data[key].length === 0) return null;
                       return (
-                        <FlexColumnWrapper key={key}>
+                        <ContentListWrapper key={key}>
                           <HeaderContent> {t(`${type}.${key}`)}</HeaderContent>
-                          {data[key].map((item: string) => {
-                            return <InfoView key={item} url={item} />;
-                          })}
-                        </FlexColumnWrapper>
+                          <FlexColumnWrapper>
+                            {data[key].map((item: string) => {
+                              return <InfoView key={item} url={item} />;
+                            })}
+                          </FlexColumnWrapper>
+                        </ContentListWrapper>
                       );
                     })}
                   </WrapperList>
-                </Section>
-              </DetailViewContainer>
+                </>
+              </>
             )}
           </>
         )}
@@ -92,67 +98,68 @@ const DetailViewContainer = styled.div`
   padding: 20px;
 `;
 
-const TextContent = styled.span.attrs<{ $isbold?: boolean }>((props) => ({
-  $isbold: props.$isbold || false,
-}))`
-  padding: 5px 15px;
-  font-size: 16px;
-  font-weight: ${(props) => (props.$isbold ? "bold" : "normal")};
-`;
-
 const Title = styled.h3`
   font-size: 24px;
   margin-bottom: 0;
   text-align: center;
   position: relative;
-  top: -49px;
+  top: -25px;
 `;
 
+const Section = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+`;
+
+//Section 1 Stylings
+const ListItem = styled.tr``;
+
+const TextContent = styled.td.attrs<{ $isbold?: boolean }>((props) => ({
+  $isbold: props.$isbold || false,
+}))`
+  padding: 5px 15px;
+  font-size: 16px;
+  font-weight: ${(props) => (props.$isbold ? "bold" : "normal")};
+  min-width: 150px;
+`;
+
+const KeyValuesList = styled.table`
+  max-width: 80%;
+  padding: 10px;
+`;
+
+//Section 2 Stylings
 const HeaderContent = styled.div`
   font-size: 16px;
-  background: #e8e8e8;
+  background: whitesmoke;
+  border: 1px solid yellow;
   padding: 8px;
   text-align: center;
-  border-radius: 20px;
-  margin-bottom: 10px;
-`;
-
-const ListItem = styled.div`
-  padding: 10px;
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  @media (max-width: 450px) {
-    grid-template-columns: 1fr;
-  }
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 `;
 
 const FlexColumnWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 10px;
-  width: 180px;
-  @media (max-width: 768px) {
-    width: 220px; /* One column on smaller screens */
+  width: 225px;
+  height: 200px;
+  overflow: scroll;
+  background: lightgoldenrodyellow;
+  -webkit-overflow-scrolling: touch;
+
+  &::-webkit-scrollbar {
+    display: none;
   }
-`;
-
-const Section = styled.div`
-  flex: 1;
-  min-width: calc(50% - 10px); /* Two columns on larger screens */
-  margin-bottom: 20px;
-
-  @media (max-width: 768px) {
-    min-width: 100%; /* One column on smaller screens */
-  }
-`;
-
-const KeyValuesList = styled.div`
-  padding: 10px;
 `;
 
 const WrapperList = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  justify-content: space-evenly;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  justify-items: center;
+`;
+
+const ContentListWrapper = styled.div`
+  margin-bottom: 20px;
 `;
