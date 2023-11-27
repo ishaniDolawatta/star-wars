@@ -25,6 +25,7 @@ const ModalWrapper = styled.div`
   min-width: 250px;
   min-height: 200px;
   overflow-y: scroll;
+  z-index: 100;
   -webkit-overflow-scrolling: touch;
 
   &::-webkit-scrollbar {
