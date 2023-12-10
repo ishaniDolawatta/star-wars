@@ -4,8 +4,11 @@
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
 </p>
-
-> Star wars combined search and view application using SWAPI.
+<p>
+  <a href="https://github.com/ishaniDolawatta/star-wars/actions/workflows/testing.yml" target="_blank">
+    <img alt="Testing" src="https://github.com/ishaniDolawatta/star-wars/actions/workflows/testing.yml/badge.svg" />
+  </a>
+</p>
 
 ### ✨ [Demo](https://dashing-caramel-6c63e2.netlify.app/)
 
